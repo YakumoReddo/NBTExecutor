@@ -1,0 +1,5 @@
+name: NBTExecutor
+author: Yakumo_Reddo
+version: 1
+main: com.satsukirin.NBTExecutor.NBTExecutor
+api-version: 1.14

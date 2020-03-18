@@ -1,0 +1,41 @@
+cfgversion: 1
+#here storage commands
+cmds: 
+#A NBT Executor contains four compoments
+
+#  trigger - decide when and how the command triggered
+#            L - Left Click    R - Right Click
+#            SL - Shift + Left Click     SR - Shift + Left Click
+#            SF - Shift + F(swap main hand key)
+#  command - what will be executed if a NBT Executor was triggered. use 
+#            "console:[your command]" if you want to execute a command in console.
+#            We dont have an OP method.
+#  key - NBT key
+#  value - NBT value
+#only if the key, value and trigger are correct that the command will be performed
+
+
+
+
+###                           !!!Attention!!!                           ###
+#DO NOT USE AN INEXISTENT COMMAND, THIS WILL CAUSE EXCEPTION IN THE CONSOLE
+###########################################################################
+
+
+#this is a test command,feel free to delete them
+  test1: 
+    trigger: SR
+    command: say this is a test;console:say test
+    key: nbte
+    value: test1
+  test2:
+    trigger: SF
+    command: say give me diamond;give @p diamond;tell @p here you are
+    key: testnbt
+    value: two
+#  menu: 
+#    trigger: SF
+#    command: tell @p you opened the menu;menu
+#    key: ability
+#    value: menu
+  
