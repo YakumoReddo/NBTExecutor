@@ -1,10 +1,10 @@
-package com.satsukirin.NBTExecutor;
+package com.satsukirin.NBTExecutor.Listeners;
 
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,14 +14,17 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
-import net.minecraft.server.v1_15_R1.NBTTagCompound;
+import com.satsukirin.NBTExecutor.NBTCmd;
+import com.satsukirin.NBTExecutor.NBTExecutor;
 
-public class NBTCListener implements Listener {
+import net.minecraft.server.v1_14_R1.NBTTagCompound;
+
+public class Listener1_14_R1 implements Listener {
 	
 	private NBTExecutor plugin;
 	private ArrayList<NBTCmd> al;
 	
-	public NBTCListener(NBTExecutor p,ArrayList<NBTCmd> a) {
+	public Listener1_14_R1(NBTExecutor p,ArrayList<NBTCmd> a) {
 		plugin=p;
 		al=a;
 		plugin.getLogger().info("[NBTExecutor] Listener registered!");
@@ -85,7 +88,7 @@ public class NBTCListener implements Listener {
 	
 	
 	public boolean compareNBT(ItemStack item,String key,String value) {
-		net.minecraft.server.v1_15_R1.ItemStack nmsitem = CraftItemStack.asNMSCopy(item);
+		net.minecraft.server.v1_14_R1.ItemStack nmsitem = CraftItemStack.asNMSCopy(item);
 		if(!nmsitem.hasTag())return false;
 		NBTTagCompound nbttc = nmsitem.getTag();
 		if (!nbttc.hasKey(key)) return false;

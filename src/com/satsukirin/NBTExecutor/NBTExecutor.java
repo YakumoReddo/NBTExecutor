@@ -7,6 +7,12 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.satsukirin.NBTExecutor.Listeners.Listener1_12_R1;
+import com.satsukirin.NBTExecutor.Listeners.Listener1_13_R1;
+import com.satsukirin.NBTExecutor.Listeners.Listener1_13_R2;
+import com.satsukirin.NBTExecutor.Listeners.Listener1_14_R1;
+import com.satsukirin.NBTExecutor.Listeners.Listener1_15_R1;
+
 public class NBTExecutor extends JavaPlugin {
 	
 	
@@ -27,9 +33,7 @@ public class NBTExecutor extends JavaPlugin {
 			count++;
 		}
 		getLogger().info("[NBTExecutor] Loaded "+count+" commands");
-		NBTCListener listener = new NBTCListener(this, al);
-		Bukkit.getPluginManager().registerEvents(listener, this);
-		
+		registerListener(al);
 		
 		
 		getLogger().info("[NBTExecutor] NBTExecutor has been loaded!");
@@ -40,6 +44,45 @@ public class NBTExecutor extends JavaPlugin {
 		
 		
 		getLogger().info("[NBTExecutor] Unloaded NBTExecutor!");
+	}
+	
+	public boolean registerListener(ArrayList<NBTCmd> al) {
+		String raw = Bukkit.getServer().getClass().getPackage().getName();
+		String nms = raw.substring(raw.lastIndexOf(".")+1);
+		getLogger().info("[NBTExecutor] NMS version: "+nms);
+		switch (nms) {
+		case "v1_15_R1":
+			Listener1_15_R1 listener115r1 = new Listener1_15_R1(this, al);
+			Bukkit.getPluginManager().registerEvents(listener115r1, this);
+			getLogger().info("[NBTExecutor] registered Version 1.15.x");
+			return true;
+		case "v1_14_R1":
+			Listener1_14_R1 listener114r1 = new Listener1_14_R1(this, al);
+			Bukkit.getPluginManager().registerEvents(listener114r1, this);
+			getLogger().info("[NBTExecutor] registered Version 1.14.x");
+			return true;
+		case "v1_13_R2":
+			Listener1_13_R2 listener113r2 = new Listener1_13_R2(this, al);
+			Bukkit.getPluginManager().registerEvents(listener113r2, this);
+			getLogger().info("[NBTExecutor] registered Version 1.13.x");
+			return true;
+		case "v1_13_R1":
+			Listener1_13_R1 listener113r1 = new Listener1_13_R1(this, al);
+			Bukkit.getPluginManager().registerEvents(listener113r1, this);
+			getLogger().info("[NBTExecutor] registered Version 1.13");
+			return true;
+		case "v1_12_R1":
+			Listener1_12_R1 listener112r1 = new Listener1_12_R1(this, al);
+			Bukkit.getPluginManager().registerEvents(listener112r1, this);
+			getLogger().info("[NBTExecutor] registered Version 1.12.x");
+			return true;
+			
+		default:
+			return false;
+		}
+		
+		
+		
 	}
 
 }
